@@ -1,0 +1,20 @@
+# Log file - the following switch allows to specify the file that will be
+# used to write all messages from simulation:  -l <filename>
+*.log
+
+##### VisualStudioCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+##### JetBrains
+.idea
+
+# IntelliJ
+out/
