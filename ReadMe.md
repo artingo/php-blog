@@ -7,3 +7,4 @@ Follow these steps to continuously build a server-side Blog web app with PhP.
 1. Create the model classes in the `model` folder.
 2. Write scripts in the `scripts` folder that generate test data in JSON format in the `data` folder.
 3. Create controllers in the `controllers` folder that load and display the JSON data.
+4. Create PHP/HTML views in the `views` folder. Write a `view` function that loads data from the corresponding JSON file and loads the proper view template to display it.
