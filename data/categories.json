@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Attractions"
+    },
+    {
+        "id": 2,
+        "name": "Beaches"
+    },
+    {
+        "id": 3,
+        "name": "Cities"
+    },
+    {
+        "id": 4,
+        "name": "Escape Rooms"
+    },
+    {
+        "id": 5,
+        "name": "Mountains"
+    },
+    {
+        "id": 6,
+        "name": "Museums"
+    }
+]

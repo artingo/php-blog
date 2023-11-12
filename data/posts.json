@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "title": "Post no 1",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "user_id": 1,
+        "categories": [
+            1
+        ],
+        "created": {
+            "date": "2023-11-12 22:28:39.944414",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    },
+    {
+        "id": 2,
+        "title": "Post no 2",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "user_id": 1,
+        "categories": [
+            1
+        ],
+        "created": {
+            "date": "2023-11-12 22:28:39.944438",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    },
+    {
+        "id": 3,
+        "title": "Post no 3",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "user_id": 1,
+        "categories": [
+            1
+        ],
+        "created": {
+            "date": "2023-11-12 22:28:39.944445",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    },
+    {
+        "id": 4,
+        "title": "Post no 4",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "user_id": 1,
+        "categories": [
+            1
+        ],
+        "created": {
+            "date": "2023-11-12 22:28:39.944452",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    },
+    {
+        "id": 5,
+        "title": "Post no 5",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "user_id": 1,
+        "categories": [
+            1
+        ],
+        "created": {
+            "date": "2023-11-12 22:28:39.944459",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    }
+]

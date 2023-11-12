@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "name": "Freddie_0",
+        "email": "alfred.walther.ext@iu.org",
+        "password": "$2y$10$QPSjcEh8p9DvC.AVfVlMXeKUxJyhAPLcdYhQROK599VErx9h7kAA6",
+        "created": {
+            "date": "2023-11-12 22:28:32.333523",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Freddie_1",
+        "email": "alfred.walther.ext@iu.org",
+        "password": "$2y$10$NqoYTEV5tiWs5ISDfbbiMeZ5Vn2X4lKU.GtE4J2CcAPSqNqJz.GOW",
+        "created": {
+            "date": "2023-11-12 22:28:32.483616",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Freddie_2",
+        "email": "alfred.walther.ext@iu.org",
+        "password": "$2y$10$081cjNjqWYFS8HjUbi8nK.t.fFSnxg\/HL8.nIlWEetTiMZLngkOKq",
+        "created": {
+            "date": "2023-11-12 22:28:32.632663",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    }
+]
