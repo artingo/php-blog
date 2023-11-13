@@ -15,3 +15,10 @@ Follow these steps to continuously build a server-side Blog web app with PhP.
    3. Open the `controllers\posts.php` page in your browser and check the result.
    4. Correct all the CSS, JS and image references using CDN links (for starters).
    5. Remove all unnecessary UI elements and place your own labels.
+6. Create a `layout template`. To do so, follow these steps:
+   1. Create a `views\partials` sub-directory. 
+   2. Cut the code of HTML `<head>`, top navigation, sidebar and footer and paste it into their corresponding PhP files.
+   3. `require` all partials in the `loadView()` function.
+   4. Create a `public` folder and `css`, `img`, `js` and `webfonts` sub-folders. Download the corresponding resources to these directories and modify the links to use the local copies.
+   5. Tell the PhP server to use the `public` directory with these parameters:<br/>
+   `php -S localhost:8080 -t public`

@@ -5,7 +5,7 @@
  * @param $key - keyword identifying the view
  * @return void
  */
-function loadData($key)
+function loadData($key) : array
 {
     $data = [];
     $filename = "../data/" . $key . ".json";
@@ -14,9 +14,8 @@ function loadData($key)
         $content = file_get_contents($filename);
         $data = json_decode($content);
     }
-
-    extract($data);
     $GLOBALS[$key] = $data;
+    return $data;
 }
 
 /**
@@ -26,7 +25,12 @@ function loadData($key)
  */
 function loadView($view)
 {
-    loadData($view);
-    require("../views/" . $view . ".php");
+    $data = loadData($view);
+    extract($data);
 
+    require("views/partials/html-head.php");
+    require("views/partials/top-navbar.php");
+    require("views/partials/sidebar.php");
+    require("views/" . $view . ".php");
+    require("views/partials/footer.php");
 }
