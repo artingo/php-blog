@@ -1,5 +1,2 @@
 <?php
-require "../functions.php";
-
-loadData("categories");
-loadView("posts");
+loadView("posts", "Memories of our travels");

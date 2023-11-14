@@ -1,4 +1,2 @@
 <?php
-require "../functions.php";
-
-loadView("users");
+loadView("users", "These are the blog users...");

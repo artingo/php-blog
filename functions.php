@@ -23,10 +23,9 @@ function loadData($key) : array
  * @param $view - keyword identifying the view
  * @return void
  */
-function loadView($view)
+function loadView($view, $title = "")
 {
     $data = loadData($view);
-    extract($data);
 
     require("views/partials/html-head.php");
     require("views/partials/top-navbar.php");

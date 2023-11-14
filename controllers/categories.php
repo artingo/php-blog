@@ -1,4 +1,2 @@
 <?php
-require "../functions.php";
-
-loadView("categories");
+loadView("categories", "Travel categories");
