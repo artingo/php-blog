@@ -1,13 +1,13 @@
-<nav class="main-header navbar navbar-expand navbar-light">
+<nav class="main-header navbar navbar-expand navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Posts</a>
+            <a href="/posts" class="nav-link">Posts</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block  dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown2" role="button"
+            <a href="/categories" class="nav-link dropdown-toggle" id="navbarDropdown2" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categories
             </a>
@@ -43,7 +43,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="dropdown" href="#">
+            <a class="nav-link" href="/users">
                 <i class="fas fa-users"></i>
             </a>
         </li>

@@ -5,23 +5,21 @@
     </a>
     <div class="sidebar">
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                data-accordion="false">
-
+            <ul class="nav nav-pills nav-sidebar flex-column">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="/posts" class="nav-link <?= $view=='posts'? 'bg-indigo' : ''?>">
                         <i class="nav-icon fas fa-blog"></i>
                         <p>Posts</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/categories" class="nav-link <?= $view == 'categories'? 'bg-indigo' : ''?>">
                         <i class="nav-icon fas fa-shapes"></i>
                         <p>Categories</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/users" class="nav-link <?= $view == 'users'? 'bg-indigo' : ''?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Users</p>
                     </a>

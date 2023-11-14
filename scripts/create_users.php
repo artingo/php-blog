@@ -3,7 +3,7 @@ require "../model/User.php";
 
 $users = [];
 $pwd = 'p@$$w0rd23!';
-for ($i = 0; $i < 3; $i++) {
+for ($i = 1; $i <= 3; $i++) {
     $user = new User("Freddie_" . $i,
         "alfred.walther.ext@iu.org",
         $pwd . $i
