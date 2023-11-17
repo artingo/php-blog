@@ -10,7 +10,7 @@ class Post
     public $id;
     public $title;
     public $body;
-    public $user_id;
+    public $userId;
     public $categories = [];
     public $created;
 
@@ -18,18 +18,18 @@ class Post
      * Creates a new blog entry
      * @param $title
      * @param $body
-     * @param $user_id
-     * @param $category_id
+     * @param $userId
+     * @param $categories
      */
-    public function __construct($title, $body, $user_id, $category_id = 1)
+    public function __construct($title, $body, $userId, $categories = [1,3])
     {
         $this->title = $title;
         $this->body = $body;
-        $this->user_id = $user_id;
-        $this->categories[] = $category_id;
+        $this->userId = $userId;
+        $this->categories = array_merge($this->categories, $categories);
 
         $this->id = self::$id_counter;
-        $this->created = new DateTime();
+        $this->created = date_timestamp_get(date_create());
         self::$id_counter++;
     }
 

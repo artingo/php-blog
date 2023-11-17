@@ -48,3 +48,25 @@ Follow these steps to continuously build a server-side Blog web app with PhP.
    Display that title in the view by using the `$title` variable: `<h1 class="m-0"><?= $title ?></h1>`
    4. Place the proper page links in the top-navbar and sidebar: `<a href="/posts" class="nav-link">Posts</a>`
    5. Highlight the current nav link in the sidebar by checking the `$view` variable: `<a href="/posts" class="nav-link <?= $view=='posts'? 'bg-indigo' : ''?>">`
+   
+8. Implement the `create post` feature. For this:
+   1. Create the `controllers\posts` directory and move `controllers\posts.php` to `constrollers\posts\index.php`. Correct all necessary links.
+   2. Create the `views\posts` directory and move `views\posts.php` to `views\posts\index.php`. Correct all necessary links.
+   3. Create both `controllers\posts\create.php` and `views\posts\create.php`.
+   4. Add `'/posts/create' => BASE_PATH . '/controllers/posts/create.php'` to the `$routes` in `public\index.php`.
+   5. In `views\posts\create.php`, insert a HTML form with these fields:
+      1. `title` as simple input field, 
+      2. `categories[]` as multiple select box,
+      3. and `body` as textarea. You may use a rich text editor like `TinyMCE`.
+      4. You may add [jQuery Validation](https://jqueryvalidation.org/) to it.
+      5. Add `method="post" action="/posts/save"` to the `<form>` tag.
+      6. Add `'/posts/save' =>   BASE_PATH . '/controllers/posts/store.php'` to the `$routes`.
+   6. In `functions.php`, write a `saveData($key, $newEntry)` function:
+      1. load the corresponding JSON file with `loadData(key)`
+      2. add the `$newEntry` to `$data[]`
+      3. save the updated JSON file.
+   7. Implement `controllers\posts\store.php`:
+      1. create a new Post with the fields submitted in the form:<br/>
+      `$newPost = new Post($_POST['title'], $_POST['body'], 1, $_POST['categories']);`
+      2. save that post: `saveData('posts', $newPost);`
+      3. redirect to the posts overview page: `header("location: /posts");`

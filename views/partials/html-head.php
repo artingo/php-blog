@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="/css/select2.min.css">
     <link rel="stylesheet" href="/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">

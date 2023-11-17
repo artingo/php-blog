@@ -7,7 +7,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column">
                 <li class="nav-item">
-                    <a href="/posts" class="nav-link <?= $view=='posts'? 'bg-indigo' : ''?>">
+                    <a href="/posts" class="nav-link <?= $view=='posts/index'? 'bg-indigo' : ''?>">
                         <i class="nav-icon fas fa-blog"></i>
                         <p>Posts</p>
                     </a>
