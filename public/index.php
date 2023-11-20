@@ -1,7 +1,8 @@
 <?php
 require("../functions.php");
-loadData("categories");
 loadData("users");
+loadData("categories");
+loadData("posts");
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $routes = [

@@ -5,7 +5,6 @@
     <div class="content px-2">
         <div class="col-md-8">
             <div class="card card-indigo card-outline">
-
                 <form method="post" action="/posts/save" id="blogForm">
                     <div class="card-body">
                         <div class="form-group row">
@@ -14,6 +13,7 @@
                                 <input type="text" class="form-control" name="title" id="title" required
                                        placeholder="Write your post title here...">
                             </div>
+                            <input type="hidden" name="userId" value="<?= $_SESSION['currentUser'] ?>">
                         </div>
 
                         <div class="form-group row">
@@ -21,11 +21,11 @@
                             <div class="col-sm-10">
                                 <select name="categories[]" id="categories" multiple="multiple"
                                         class="select2 form-control col-12" data-placeholder="Select a category">
-                                    <?php foreach ($GLOBALS['categories'] as $category) : ?>
-                                        <option value="<?= $category->id ?>">
-                                            <?= $category->name ?>
-                                        </option>
-                                    <?php endforeach; ?>
+                                <?php foreach ($GLOBALS['categories'] as $category) : ?>
+                                    <option value="<?= $category->id ?>">
+                                        <?= $category->name ?>
+                                    </option>
+                                <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
 
                     <div class="card-footer">
                         <div class="float-right">
-                            <button type="submit" class="btn bg-gradient-indigo ">
+                            <button type="submit" class="btn bg-gradient-indigo">
                                 <i class="fas fa-floppy-disk"></i> Create
                             </button>
                         </div>
@@ -50,10 +50,8 @@
                     </div>
                 </form>
 
-                <script src="https://cdn.tiny.cloud/1/vh9li5widrs2gxoiv00dst7g4yqxkua7b0z1l54d83hsetlf/tinymce/6/tinymce.min.js"
-                        referrerpolicy="origin"></script>
+                <script src="https://cdn.tiny.cloud/1/vh9li5widrs2gxoiv00dst7g4yqxkua7b0z1l54d83hsetlf/tinymce/6/tinymce.min.js"></script>
                 <script src="/js/jquery.validate.min.js" defer></script>
-
                 <script src="/js/select2.min.js" defer></script>
                 <script>
                     tinymce.init({
@@ -64,13 +62,7 @@
 
                     function initForm() {
                         $('.select2').select2()
-
-                        $.validator.setDefaults({
-                            ignore: '',
-                            submitHandler: function () {
-                                $('#blogForm').submit();
-                            }
-                        });
+                        $.validator.setDefaults({ignore: ''});
 
                         $('#blogForm').validate({
                             rules: {
@@ -79,7 +71,7 @@
                                 },
                                 body: {
                                     required: true,
-                                    // minlength: 200
+                                    minlength: 200
                                 }
                             },
                             messages: {
@@ -107,7 +99,6 @@
 
                     window.onload = setTimeout(initForm, 100);
                 </script>
-
             </div>
 
         </div>

@@ -26,7 +26,7 @@ class User
         $this->password = password_hash($password, PASSWORD_DEFAULT);
 
         $this->id = self::$id_counter;
-        $this->created = new DateTime();
+        $this->created = date_timestamp_get(date_create());
         self::$id_counter++;
     }
 

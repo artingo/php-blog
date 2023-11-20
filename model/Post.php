@@ -26,7 +26,7 @@ class Post
         $this->title = $title;
         $this->body = $body;
         $this->userId = $userId;
-        $this->categories = array_merge($this->categories, $categories);
+        $this->categories = $categories;
 
         $this->id = self::$id_counter;
         $this->created = date_timestamp_get(date_create());
