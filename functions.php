@@ -1,5 +1,6 @@
 <?php
 const BASE_PATH = __DIR__;
+require_once BASE_PATH . "/model/Post.php";
 
 /**
  * Load JSON data from file and store it in '$GLOBALS'
@@ -9,16 +10,21 @@ const BASE_PATH = __DIR__;
 function loadData($key): array
 {
 	if (empty($GLOBALS[$key])) {
-		$filename = "../data/" . $key . ".json";
+		$filename = BASE_PATH . "/data/" . $key . ".json";
 
 		if (file_exists($filename)) {
 			$content = file_get_contents($filename);
 			$data = json_decode($content);
 			$GLOBALS[$key] = $data;
+
+			// initialize idCounter of posts
+			if ($key == 'posts') {
+				Post::setIdCounter(count($data) + 1);
+			}
 		}
 	}
 
-	return $GLOBALS[$key];
+	return $GLOBALS[$key] ?? [];
 }
 
 /**
@@ -34,16 +40,12 @@ function saveData($key, $newEntry)
 		var_dump($GLOBALS);
 		exit();
 	}
-	$start = time();
 
 	array_push($GLOBALS[$key], $newEntry);
-	$file = fopen("../data/" . $key . ".json", "w+");
+	$file = fopen(BASE_PATH . "/data/" . $key . ".json", "w+");
 	$json = json_encode($GLOBALS[$key], JSON_PRETTY_PRINT);
 	fwrite($file, $json);
 	fclose($file);
-	$end = time();
-	echo "Duration: " . ($end - $start);
-
 }
 
 /**
@@ -51,16 +53,17 @@ function saveData($key, $newEntry)
  * @param $view - keyword identifying the view
  * @return void
  */
-function loadView($view, $title = "")
+function loadView($view, $title = "", $params = [])
 {
-		if (empty($_SESSION['currentUser'])) {
-			session_start();
-			// start with UserId = 1
-			$_SESSION['currentUser'] = 1;
-		}
+	if (empty($_SESSION['currentUser'])) {
+		session_start();
+		// start with UserId = 1
+		$_SESSION['currentUser'] = 1;
+	}
 	$pos = strpos($view, "/");
 	$key = ($pos > 0) ? substr($view, 0, $pos) : $view;
 	$data = loadData($key);
+	extract($params);
 
 	require(BASE_PATH . "/views/partials/html-head.php");
 	require(BASE_PATH . "/views/partials/top-navbar.php");
@@ -81,4 +84,14 @@ function array2map($array)
 		$categories[$item->id] = $item->name;
 	}
 	return $categories;
+}
+
+function getItem($view, $id)
+{
+	foreach ($GLOBALS[$view] as $item) {
+		if ($item->id == $id) {
+			return $item;
+		}
+	}
+	return null;
 }

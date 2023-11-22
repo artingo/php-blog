@@ -70,3 +70,22 @@ Follow these steps to continuously build a server-side Blog web app with PhP.
       `$newPost = new Post($_POST['title'], $_POST['body'], 1, $_POST['categories']);`
       2. save that post: `saveData('posts', $newPost);`
       3. redirect to the posts overview page: `header("location: /posts");`
+8. Implement the post detail view:
+   1. Create a new dynamic rule in the router:
+   ```
+   // check if `$uri` starts with 'posts'
+   if (strpos($uri, "/posts/") == 0) {
+      // parse any ID after the slash
+      $postId = intval(substr($uri, 7));
+      if ($postId) {
+        require BASE_PATH . '/controllers/posts/read.php';
+      }
+   }
+   ```
+   2. Implement a `getItem($view, $id)` function in `functions.php` that returns the item defined by `$id` from the `$view`.
+   3. Implement `controllers\posts\read.php`.<br/>
+   Call `$post = getItem("posts", $postId);`.<br/> 
+   Load the detail view and pass the current post:<br/>
+   `loadView("posts/read", $post->title, ['post'=>$post]);`      
+   4. Implement `views\posts\read.php`, showing the post's details.<br/>
+   Add a `close` button to return to the overview.

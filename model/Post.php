@@ -6,7 +6,7 @@
  */
 class Post
 {
-    private static $id_counter = 1;
+    private static $idCounter = 1;
     public $id;
     public $title;
     public $body;
@@ -28,9 +28,13 @@ class Post
         $this->userId = $userId;
         $this->categories = $categories;
 
-        $this->id = self::$id_counter;
+        $this->id = self::$idCounter;
         $this->created = date_timestamp_get(date_create());
-        self::$id_counter++;
+        self::$idCounter++;
     }
+
+		public static function setIdCounter($idCounter) {
+			self::$idCounter = $idCounter;
+		}
 
 }

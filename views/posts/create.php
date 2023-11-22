@@ -56,7 +56,9 @@
                 <script>
                     tinymce.init({
                         selector: 'textarea#body',
+                        plugins: 'image',
                         menubar: false,
+                        toolbar: 'undo redo | styles | bold italic align | image',
                         statusbar: false
                     });
 
