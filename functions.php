@@ -14,7 +14,8 @@ function loadData($key): array
 
 		if (file_exists($filename)) {
 			$content = file_get_contents($filename);
-			$data = json_decode($content);
+			$data = (array) json_decode($content);
+
 			$GLOBALS[$key] = $data;
 
 			// initialize idCounter of posts
@@ -33,7 +34,7 @@ function loadData($key): array
  * @param $newEntry - a new entry for the model array
  * @return void
  */
-function saveData($key, $newEntry)
+function saveData($key, $newEntry = null)
 {
 	if (empty($GLOBALS[$key])) {
 		echo $key . " not found";
@@ -41,7 +42,10 @@ function saveData($key, $newEntry)
 		exit();
 	}
 
-	array_push($GLOBALS[$key], $newEntry);
+	if ($newEntry) {
+		$GLOBALS[$key][$newEntry->id] = $newEntry;
+	}
+
 	$file = fopen(BASE_PATH . "/data/" . $key . ".json", "w+");
 	$json = json_encode($GLOBALS[$key], JSON_PRETTY_PRINT);
 	fwrite($file, $json);
@@ -65,11 +69,11 @@ function loadView($view, $title = "", $params = [])
 	$data = loadData($key);
 	extract($params);
 
-	require(BASE_PATH . "/views/partials/html-head.php");
-	require(BASE_PATH . "/views/partials/top-navbar.php");
-	require(BASE_PATH . "/views/partials/sidebar.php");
-	require(BASE_PATH . "/views/" . $view . ".php");
-	require(BASE_PATH . "/views/partials/footer.php");
+	require_once BASE_PATH . "/views/partials/html-head.php";
+	require_once BASE_PATH . "/views/partials/top-navbar.php";
+	require_once BASE_PATH . "/views/partials/sidebar.php";
+	require_once BASE_PATH . "/views/" . $view . ".php";
+	require_once BASE_PATH . "/views/partials/footer.php";
 }
 
 /**

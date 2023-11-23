@@ -4,28 +4,39 @@ This project is meant to teach PhP fundamentals by creating a blog, step by step
 
 Follow these steps to continuously build a server-side Blog web app with PhP.
 
-1. Create the model classes in the `model` folder.
-2. Write scripts in the `scripts` folder that generate test data in JSON format in the `data` folder.
-3. Create controllers in the `controllers` folder that load and display the JSON data.
-4. Create PHP/HTML views in the `views` folder. Write a `view` function that loads data from the corresponding JSON file and loads the proper view template to display it.
-5. Chose a UI framework. We recommend:<br/>
-    1. [Bootstrap](https://getbootstrap.com/) or [Material Design Lite](https://getmdl.io/started/index.html)
-    2. Search for a demo layout page and copy its HTML code to the `views\posts.php` file.<br/>
-       For example: [AdminLTE starter page](https://adminlte.io/themes/v3/starter.html)
-   3. Open the `controllers\posts.php` page in your browser and check the result.
-   4. Correct all the CSS, JS and image references using CDN links (for starters).
-   5. Remove all unnecessary UI elements and place your own labels.
+### 1. Data model
+Create 3 model classes in the 'model' folder: `Post`, `User` and `Category`.
+
+### 2. Test data 
+Write scripts in the `scripts` folder that generate test data in JSON format in the `data` folder.
+
+### 3. Controllers
+Create controllers in the `controllers` folder that load and display the JSON data.
+
+### 4. Views
+Create PHP/HTML views in the `views` folder. Write a `view` function that loads data from the corresponding JSON file and loads the proper view template to display it.
+
+### 5. UI framework
+Chose a UI framework. We recommend:<br/>
+1. [Bootstrap](https://getbootstrap.com/) or [Material Design Lite](https://getmdl.io/started/index.html)
+2. search for a demo layout page and copy its HTML code to the `views\posts.php` file.<br/>
+For example: [AdminLTE starter page](https://adminlte.io/themes/v3/starter.html)
+3. open the `controllers\posts.php` page in your browser and check the result.
+4. correct all the CSS, JS and image references using CDN links (for starters).
+5. remove all unnecessary UI elements and place your own labels.
+
+### 6. Layout template
+Create a `layout template`. To do so, follow these steps:
+1. create a `views\partials` sub-directory. 
+2. cut out the code of HTML `<head>`, top navigation, sidebar and footer and paste it into their corresponding PhP files.
+3. `require` all partials in the `loadView()` function.
+4. create a `public` folder and `css`, `img`, `js` and `webfonts` sub-folders. Download the corresponding resources to these directories and modify the links to use the local copies.
+5. tell the PhP server to use the `public` directory with these parameters:<br/>
+`php -S localhost:8080 -t public`
    
-6. Create a `layout template`. To do so, follow these steps:
-   1. Create a `views\partials` sub-directory. 
-   2. Cut out the code of HTML `<head>`, top navigation, sidebar and footer and paste it into their corresponding PhP files.
-   3. `require` all partials in the `loadView()` function.
-   4. Create a `public` folder and `css`, `img`, `js` and `webfonts` sub-folders. Download the corresponding resources to these directories and modify the links to use the local copies.
-   5. Tell the PhP server to use the `public` directory with these parameters:<br/>
-   `php -S localhost:8080 -t public`
-   
-7. Implement a basic `router`. 
-   1. Inside `public\index.php`, insert this code:<br/>
+### 7. Router 
+Implement a basic router: 
+1. inside `public\index.php`, insert this code:<br/>
    ```
    $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
    $routes = [
@@ -42,50 +53,66 @@ Follow these steps to continuously build a server-side Blog web app with PhP.
      loadView("404");
    }
    ```
-   2. Add an error page: `view\404.php`
-   3. Add dynamic titles by adding a `$title` parameter to the `loadView($view, $title)` function. Pass a title in the corresponding controller. Example:
-   `loadView("posts", "Memories of our travels");`<br/>
-   Display that title in the view by using the `$title` variable: `<h1 class="m-0"><?= $title ?></h1>`
-   4. Place the proper page links in the top-navbar and sidebar: `<a href="/posts" class="nav-link">Posts</a>`
-   5. Highlight the current nav link in the sidebar by checking the `$view` variable: `<a href="/posts" class="nav-link <?= $view=='posts'? 'bg-indigo' : ''?>">`
+2. add an error page: `view\404.php`
+3. add dynamic titles by adding a `$title` parameter to the `loadView($view, $title)` function. Pass a title in the corresponding controller. Example:
+`loadView("posts", "Memories of our travels")`<br/>
+Display that title in the view by using the `$title` variable: `<h1 class="m-0"><?= $title ?></h1>`
+4. place the proper page links in the top-navbar and sidebar: `<a href="/posts" class="nav-link">Posts</a>`
+5. highlight the current nav link in the sidebar by checking the `$view` variable: `<a href="/posts" class="nav-link <?= $view=='posts'? 'bg-indigo' : ''?>">`
    
-8. Implement the `create post` feature. For this:
-   1. Create the `controllers\posts` directory and move `controllers\posts.php` to `constrollers\posts\index.php`. Correct all necessary links.
-   2. Create the `views\posts` directory and move `views\posts.php` to `views\posts\index.php`. Correct all necessary links.
-   3. Create both `controllers\posts\create.php` and `views\posts\create.php`.
-   4. Add `'/posts/create' => BASE_PATH . '/controllers/posts/create.php'` to the `$routes` in `public\index.php`.
-   5. In `views\posts\create.php`, insert a HTML form with these fields:
-      1. `title` as simple input field, 
-      2. `categories[]` as multiple select box,
-      3. and `body` as textarea. You may use a rich text editor like `TinyMCE`.
-      4. You may add [jQuery Validation](https://jqueryvalidation.org/) to it.
-      5. Add `method="post" action="/posts/save"` to the `<form>` tag.
-      6. Add `'/posts/save' =>   BASE_PATH . '/controllers/posts/store.php'` to the `$routes`.
-   6. In `functions.php`, write a `saveData($key, $newEntry)` function:
-      1. load the corresponding JSON file with `loadData(key)`
-      2. add the `$newEntry` to `$data[]`
-      3. save the updated JSON file.
-   7. Implement `controllers\posts\store.php`:
-      1. create a new Post with the fields submitted in the form:<br/>
-      `$newPost = new Post($_POST['title'], $_POST['body'], 1, $_POST['categories']);`
-      2. save that post: `saveData('posts', $newPost);`
-      3. redirect to the posts overview page: `header("location: /posts");`
-8. Implement the post detail view:
-   1. Create a new dynamic rule in the router:
+### 8. 'Create post' feature
+Implement the `create post` feature. For this:
+1. create the `controllers\posts` directory and move `controllers\posts.php` to `constrollers\posts\index.php`. Correct all necessary links.
+2. create the `views\posts` directory and move `views\posts.php` to `views\posts\index.php`. Correct all necessary links.
+3. create both `controllers\posts\create.php` and `views\posts\create.php`.
+4. in `public\index.php`, add this route to the `$routes`:<br/>
+`'/posts/create' => BASE_PATH . '/controllers/posts/create.php'`
+5. in `views\posts\create.php`, insert a HTML form with these fields:
+   1. `title` as simple input field, 
+   2. `categories[]` as multiple select box and
+   3. `body` as textarea. You may use a rich text editor like [TinyMCE](https://www.tiny.cloud/).
+   4. you may add [jQuery Validation](https://jqueryvalidation.org/) to it.
+   5. add `method="post" action="/posts/save"` to the `<form>` tag.
+   6. add `'/posts/save' => BASE_PATH . '/controllers/posts/store.php'` to the `$routes`.
+6. in `functions.php`, write a `saveData($key, $newEntry)` function.
+7. implement `controllers\posts\store.php`:
+   1. create a new Post with the fields submitted in the form:<br/>
+   `$newPost = new Post($_POST['title'], $_POST['body'], $_POST['userId'], $_POST['categories'])`
+   2. save that post: `saveData('posts', $newPost)`
+   3. redirect to the posts overview page: `header("location: /posts")`
+
+### 9. 'Post detail' view
+Implement the 'post detail' view:
+1. create a new dynamic rule in the router:
    ```
    // check if `$uri` starts with 'posts'
    if (strpos($uri, "/posts/") == 0) {
       // parse any ID after the slash
       $postId = intval(substr($uri, 7));
       if ($postId) {
-        require BASE_PATH . '/controllers/posts/read.php';
+         require BASE_PATH . '/controllers/posts/read.php';
       }
    }
    ```
-   2. Implement a `getItem($view, $id)` function in `functions.php` that returns the item defined by `$id` from the `$view`.
-   3. Implement `controllers\posts\read.php`.<br/>
-   Call `$post = getItem("posts", $postId);`.<br/> 
-   Load the detail view and pass the current post:<br/>
-   `loadView("posts/read", $post->title, ['post'=>$post]);`      
-   4. Implement `views\posts\read.php`, showing the post's details.<br/>
-   Add a `close` button to return to the overview.
+2. implement `controllers\posts\read.php`:<br/>
+Get the current post by its id: `$post = $GLOBALS['posts'][$postId]`.
+Load the detail view and pass the current post:
+`loadView("posts/read", $post->title, ['post'=>$post])`      
+3. create `views\posts\read.php`, showing the post's details.<br/>
+Add a `close` button to return to the overview.
+
+### 10. 'Delete post' feature
+Implement the 'delete post' feature:
+1. add a new rule to the routes:<br/>
+`'/posts/delete' => BASE_PATH . '/controllers/posts/delete.php'`
+2. in `views\posts\read.php`, add a 'delete' button that is only visible if the current user is identical to the post's user:<br/>
+`if($_SESSION['currentUser'] == $post->userId)`
+3. upon button click, show a dialog that asks: 'Do you really want to delete this post?'. 
+4. in  the dialog, implement a small `<form method="post" action="/posts/delete">` with a hidden `<input name="postId" type="hidden" value="<?= $post->id ?>">`. 
+5. create the `controllers\posts\delete.php` controller and insert this code:
+```
+$postId = $_POST['postId'];
+unset($GLOBALS['posts'][$postId]);
+saveData('posts');
+header("location: /posts");
+```
