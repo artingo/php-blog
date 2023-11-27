@@ -110,9 +110,77 @@ Implement the 'delete post' feature:
 3. upon button click, show a dialog that asks: 'Do you really want to delete this post?'. 
 4. in  the dialog, implement a small `<form method="post" action="/posts/delete">` with a hidden `<input name="postId" type="hidden" value="<?= $post->id ?>">`. 
 5. create the `controllers\posts\delete.php` controller and insert this code:
-```
-$postId = $_POST['postId'];
-unset($GLOBALS['posts'][$postId]);
-saveData('posts');
-header("location: /posts");
-```
+   ```
+   $postId = $_POST['postId'];
+   unset($GLOBALS['posts'][$postId]);
+   saveData('posts');
+   header("location: /posts");
+   ```
+
+### 11. 'Edit existing post' feature
+Implement the 'edit existing post' feature:
+1. add a new rule to the routes:<br/>
+   `'/posts/update' => BASE_PATH . '/controllers/posts/update.php'`
+2. remember the current user id in a session variable. To do so, insert this code at the beginning of `loadView()`:
+   ```
+   if (!isset($_SESSION['currentUser'])) {
+     session_start();
+     // start with UserId = 2
+     $_SESSION['currentUser'] = 2;
+   }
+   ```
+3. only a post's author should have the right to edit it. So in `views\posts\read.php`, add an 'Edit' button that is only visible if the current user is identical to the post's user:<br/>
+   `if($_SESSION['currentUser'] == $post->userId)`
+4. add a small `<form method="post" action="/posts/update">` with a hidden `<input name="postId" type="hidden" value="<?= $post->id ?>">`.
+5. create the `controllers\posts\update.php` controller and insert this code:
+   ```
+   $postId = $_POST['postId'];
+   $post = $GLOBALS['posts'][$postId];
+   if (!$post) {
+     header("location: /posts");
+   }
+   loadView("posts/edit", "[Edit] " . $post->title, ['post' => $post]);
+   ```
+6. in `controllers\posts\create.php`, create a new, empty `Post` and pass it to the view:
+   ```
+   $newPost = new Post("", "", null, []);
+   loadView("posts/edit", "New blog post", ['post' => $newPost]);
+   ```
+7. rename `views\posts\create.php` to `edit.php`. Insert these hidden fields right after the `<form>`:
+   ```
+   <input type="hidden" name="isExistingPost" value="<?=$post->userId ?>">
+   <input type="hidden" name="id" value="<?= $post->id ?>">
+   ```
+8. fill all fields' values with the post's data:
+   ```
+   <input name="title" value="<?= $post->title ?>">
+   <select name="categories[]">
+   <?php foreach ($GLOBALS['categories'] as $category) : ?>
+      <option value="<?= $category->id ?>"
+          <?= $post->categories && in_array($category->id, $post->categories) ? 'selected' : '' ?> >
+          <?= $category->name ?>
+      </option>
+   <?php endforeach; ?>
+   <textarea name="body"><?= $post->body ?></textarea>
+   ```
+9. modify the code in `controllers\posts\save.php`:
+   ```
+   $isExistingPost = $_POST['isExistingPost'];
+   // remove temporary field
+   unset($_POST['isExistingPost']);
+
+   if ($isExistingPost) {
+     $postId = $_POST['id'];
+     $post = $GLOBALS['posts'][$postId];
+     if ($post) {
+       // update the existing post with the <form> fields
+       $GLOBALS['posts'][$postId] = array_merge((array)$post, $_POST);
+       saveData('posts');
+     }
+   } else {
+     $newPost = new Post($_POST['title'], $_POST['body'], intval($_POST['userId']), $_POST['categories']);
+     saveData('posts', $newPost);
+   }
+   header("location: /posts");
+   ```
+

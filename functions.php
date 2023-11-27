@@ -20,7 +20,8 @@ function loadData($key): array
 
 			// initialize idCounter of posts
 			if ($key == 'posts') {
-				Post::setIdCounter(count($data) + 1);
+				$lastEntry = end($data);
+				Post::setIdCounter($lastEntry->id + 1);
 			}
 		}
 	}
@@ -59,13 +60,14 @@ function saveData($key, $newEntry = null)
  */
 function loadView($view, $title = "", $params = [])
 {
-	if (empty($_SESSION['currentUser'])) {
+	if (!isset($_SESSION['currentUser'])) {
 		session_start();
-		// start with UserId = 1
-		$_SESSION['currentUser'] = 1;
+		// start with UserId = 2
+		$_SESSION['currentUser'] = 2;
 	}
 	$pos = strpos($view, "/");
 	$key = ($pos > 0) ? substr($view, 0, $pos) : $view;
+
 	$data = loadData($key);
 	extract($params);
 
