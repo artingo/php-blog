@@ -1,28 +1,43 @@
+<?php $users = array2map($GLOBALS['users']);
+$userId = $post->userId ?? $_SESSION['currentUser'] ?>
+
 <div class="content-wrapper px-4 py-2">
     <div class="content-header">
         <h1 class="m-0"><?= $title ?></h1>
     </div>
+
     <div class="content px-2">
         <div class="col-md-8">
             <div class="card card-indigo card-outline">
                 <form method="post" action="/posts/save" id="blogForm">
+                    <input type="hidden" name="isExistingPost" value="<?= $post->userId ?>">
+                    <input type="hidden" name="id" value="<?= $post->id ?>">
+
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="title" class="col-sm-2 col-form-label">Title</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="title" id="title" required
-                                       placeholder="Write your post title here...">
+                                   value="<?= $post->title ?>" placeholder="Write your post title here...">
                             </div>
-                            <input type="hidden" name="userId" value="<?= $_SESSION['currentUser'] ?>">
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="userId" class="col-sm-2 col-form-label">Author</label>
+                            <div class="col-sm-10">
+                                <span class="form-control-plaintext"><?= $users[$userId] ?></span>
+                                <input type="hidden" name="userId" value="<?= $userId ?>">
+                            </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="categories[]" class="col-sm-2 col-form-label">Categories</label>
                             <div class="col-sm-10">
-                                <select name="categories[]" id="categories" multiple="multiple"
-                                        class="select2 form-control col-12" data-placeholder="Select a category">
+                                <select name="categories[]" id="categories" multiple
+                                    class="select2 form-control col-12" data-placeholder="Select a category">
                                 <?php foreach ($GLOBALS['categories'] as $category) : ?>
-                                    <option value="<?= $category->id ?>">
+                                    <option value="<?= $category->id ?>"
+                                        <?= $post->categories && in_array($category->id, $post->categories) ? 'selected' : '' ?> >
                                         <?= $category->name ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -33,7 +48,7 @@
                         <div class="form-group row">
                             <label for="body" class="col-sm-2 col-form-label">Content</label>
                             <div class="col-sm-10">
-                                <textarea id="body" name="body" class="col-sm-12" required></textarea>
+                                <textarea id="body" name="body" class="col-sm-12" required><?= $post->body ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -41,7 +56,7 @@
                     <div class="card-footer">
                         <div class="float-right">
                             <button type="submit" class="btn bg-gradient-indigo">
-                                <i class="fas fa-floppy-disk"></i> Create
+                                <i class="fas fa-floppy-disk"></i> Save
                             </button>
                         </div>
                         <a class="btn btn-default" href="/posts">

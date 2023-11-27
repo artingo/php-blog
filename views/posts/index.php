@@ -2,7 +2,20 @@
 $users = array2map($GLOBALS['users']);
 $colors = array(1 => 'maroon', 2 => 'warning', 3 => 'indigo', 4 => 'navy', 5 => 'success', 6 => 'gray');
 ?>
-
+<style>
+.card {
+    height: 22rem;
+}
+.card-header {
+    min-height: 5rem;
+}
+.card-body {
+    height: 20rem;
+    overflow: hidden;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+</style>
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -25,7 +38,7 @@ $colors = array(1 => 'maroon', 2 => 'warning', 3 => 'indigo', 4 => 'navy', 5 => 
             <div class="row">
                 <?php foreach ($GLOBALS['posts'] as $id => $post) : ?>
                   <div class="col-xl-3 col-md-4 col-sm-6">
-                      <div class="card card-outline card-indigo">
+                      <div class="card card-outline card-indigo ">
                           <div class="card-header">
                               <div class="user-block">
                                   <img class="img-circle" src="/img/user1-128x128.jpg" alt="User Image">

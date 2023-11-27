@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-3 transparent">
     <a href="#" class="brand-link">
         <i class="fa-solid fa-suitcase"></i>
         <span class="brand-text">Travel Blog</span>

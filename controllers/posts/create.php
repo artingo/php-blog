@@ -1,2 +1,3 @@
 <?php
-loadView("posts/create", "New blog post");
+$newPost = new Post("", "", null, []);
+loadView("posts/edit", "New blog post", ['post' => $newPost]);

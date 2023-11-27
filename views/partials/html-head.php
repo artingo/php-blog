@@ -11,7 +11,22 @@
     <link rel="stylesheet" href="/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="/css/select2.min.css">
     <link rel="stylesheet" href="/css/adminlte.min.css">
+
+    <style>
+    .transparent {
+        opacity: 0.7;
+    }
+    .content-wrapper {
+        opacity: 0.85;
+    }
+    .poster {
+        background-image: url(https://picsum.photos/id/28/1920/1080);
+        /*background-image: url(https://picsum.photos/seed/picsum/1920/1080?random);*/
+        /*background-repeat: no-repeat;*/
+    }
+    </style>
+
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini poster">
 <div class="wrapper">
 
