@@ -1,6 +1,10 @@
 ## PhP course
 
-This project is meant to teach PhP fundamentals by creating a blog, step by step. It uses the [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/) framework and stores its data in JSON files.
+This project is meant to teach PhP fundamentals by creating a blog, step by step. It uses the [Bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/) framework and stores its data in [JSON](https://en.wikipedia.org/wiki/JSON) files.
+
+This is how the final app looks like:
+
+![Travel Blog Screenshot](public/img/Screenshot.jpg)
 
 Follow these steps to continuously build a server-side Blog web app with PhP.
 
