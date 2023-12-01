@@ -1,5 +1,5 @@
-<?php $users = array2map($GLOBALS['users']);
-$userId = $post->userId ?? $_SESSION['currentUser'] ?>
+<?php $userId = $user->userId ?? $_SESSION['currentUser'];
+$author = $GLOBALS['users'][$userId]; ?>
 
 <div class="content-wrapper px-4 py-2">
     <div class="content-header">
@@ -10,22 +10,22 @@ $userId = $post->userId ?? $_SESSION['currentUser'] ?>
         <div class="col-md-8">
             <div class="card card-indigo card-outline">
                 <form method="post" action="/posts/save" id="blogForm">
-                    <input type="hidden" name="isExistingPost" value="<?= $post->userId ?>">
-                    <input type="hidden" name="id" value="<?= $post->id ?>">
+                    <input type="hidden" name="isExistingPost" value="<?= $user->userId ?>">
+                    <input type="hidden" name="id" value="<?= $user->id ?>">
 
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="title" class="col-sm-2 col-form-label">Title</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="title" id="title" required
-                                   value="<?= $post->title ?>" placeholder="Write your post title here...">
+                                       value="<?= $user->title ?>" placeholder="Write your post title here...">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="userId" class="col-sm-2 col-form-label">Author</label>
                             <div class="col-sm-10">
-                                <span class="form-control-plaintext"><?= $users[$userId] ?></span>
+                                <span class="form-control-plaintext"><?= $author->name ?></span>
                                 <input type="hidden" name="userId" value="<?= $userId ?>">
                             </div>
                         </div>
@@ -37,7 +37,7 @@ $userId = $post->userId ?? $_SESSION['currentUser'] ?>
                                     class="select2 form-control col-12" data-placeholder="Select a category">
                                 <?php foreach ($GLOBALS['categories'] as $category) : ?>
                                     <option value="<?= $category->id ?>"
-                                        <?= $post->categories && in_array($category->id, $post->categories) ? 'selected' : '' ?> >
+                                        <?= $user->categories && in_array($category->id, $user->categories) ? 'selected' : '' ?> >
                                         <?= $category->name ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -48,7 +48,7 @@ $userId = $post->userId ?? $_SESSION['currentUser'] ?>
                         <div class="form-group row">
                             <label for="body" class="col-sm-2 col-form-label">Content</label>
                             <div class="col-sm-10">
-                                <textarea id="body" name="body" class="col-sm-12" required><?= $post->body ?></textarea>
+                                <textarea id="body" name="body" class="col-sm-12" required><?= $user->body ?></textarea>
                             </div>
                         </div>
                     </div>

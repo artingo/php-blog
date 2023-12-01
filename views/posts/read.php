@@ -1,5 +1,5 @@
 <?php $cats = array2map($GLOBALS['categories']);
-$users = array2map($GLOBALS['users']); ?>
+$author = $GLOBALS['users'][$user->userId]; ?>
 <div class="content-wrapper px-4 py-2">
     <div class="content-header">
         <h1 class="m-0"><?= $title ?></h1>
@@ -11,25 +11,25 @@ $users = array2map($GLOBALS['users']); ?>
                     <div class="form-group row">
                         <label for="title" class="col-sm-2 col-form-label">Title</label>
                         <div class="form-control-plaintext col-sm-10">
-                            <?= $post->title ?>
+                            <?= $user->title ?>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="userId" class="col-sm-2 col-form-label">Author</label>
-                        <div class="form-control-plaintext col-sm-10"><?= $users[$post->userId] ?></div>
+                        <div class="form-control-plaintext col-sm-10"><?= $author->name ?></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="userId" class="col-sm-2 col-form-label">Created on</label>
-                        <div class="form-control-plaintext col-sm-10"><?= date("Y-m-d, H:i", $post->created) ?></div>
+                        <div class="form-control-plaintext col-sm-10"><?= date("Y-m-d, H:i", $user->created) ?></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="categories[]" class="col-sm-2 col-form-label">Categories</label>
                         <div class="form-control-plaintext col-sm-10">
-                            <?php if ($post->categories) {
-                                foreach ($post->categories as $catId) {
+                            <?php if ($user->categories) {
+                                foreach ($user->categories as $catId) {
                                     echo $cats[$catId] . "<br/>";
                                 }
                             } ?>
@@ -39,7 +39,7 @@ $users = array2map($GLOBALS['users']); ?>
                     <div class="form-group row">
                         <label for="body" class="col-sm-2 col-form-label">Content</label>
                         <div class="form-control-plaintext col-sm-10">
-                            <?= $post->body ?>
+                            <?= $user->body ?>
                         </div>
                     </div>
                 </div>
@@ -47,8 +47,8 @@ $users = array2map($GLOBALS['users']); ?>
                 <div class="card-footer">
                     <div class="float-right">
                         <form action="/posts/update" method="post">
-                        <?php if($_SESSION['currentUser'] == $post->userId): ?>
-                            <input type="hidden" name="postId" value="<?= $post->id ?>">
+                        <?php if($_SESSION['currentUser'] == $user->userId): ?>
+                            <input type="hidden" name="postId" value="<?= $user->id ?>">
                             <button class="btn bg-gradient-indigo">
                                 <i class="fas fa-pencil"></i> Edit
                             </button>
@@ -59,7 +59,7 @@ $users = array2map($GLOBALS['users']); ?>
                         </form>
                     </div>
 
-	                <?php if($_SESSION['currentUser'] == $post->userId): ?>
+	                <?php if($_SESSION['currentUser'] == $user->userId): ?>
                         <button class="btn btn-danger" data-toggle="modal" data-target="#deleteDialog">
                             <i class="fas fa-trash"></i> Delete
                         </button>
@@ -78,7 +78,7 @@ $users = array2map($GLOBALS['users']); ?>
                                     </div>
                                     <div class="modal-footer">
                                         <form method="post" action="/posts/delete">
-                                            <input name="postId" type="hidden" value="<?= $post->id ?>">
+                                            <input name="postId" type="hidden" value="<?= $user->id ?>">
                                             <button type="submit" class="btn btn-danger mr-1">
                                                 <i class="fas fa-trash"></i> Yes, delete!
                                             </button>

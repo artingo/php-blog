@@ -3,12 +3,12 @@ require "../model/User.php";
 
 $users = [];
 $pwd = 'p@$$w0rd23!';
-for ($i = 1; $i <= 3; $i++) {
-    $user = new User("Freddie_" . $i,
+for ($id = 1; $id <= 3; $id++) {
+    $user = new User("Freddie_" . $id,
         "alfred.walther.ext@iu.org",
-        $pwd . $i
+        $pwd . $id
     );
-    $users[] = $user;
+    $users[$id] = $user;
 }
 
 $file = fopen("../data/users.json", "w+");

@@ -1,6 +1,7 @@
 <?php
 const BASE_PATH = __DIR__;
 require_once BASE_PATH . "/model/Post.php";
+require_once BASE_PATH . "/model/User.php";
 
 /**
  * Load JSON data from file and store it in '$GLOBALS'
@@ -14,14 +15,21 @@ function loadData($key): array
 
 		if (file_exists($filename)) {
 			$content = file_get_contents($filename);
-			$data = (array) json_decode($content);
+			$data = (array)json_decode($content);
 
 			$GLOBALS[$key] = $data;
 
-			// initialize idCounter of posts
-			if ($key == 'posts') {
-				$lastEntry = end($data);
-				Post::setIdCounter($lastEntry->id + 1);
+			// initialize idCounters
+			$lastEntry = end($data);
+			$newId = $lastEntry->id + 1;
+
+			switch ($key) {
+				case 'posts':
+					Post::setIdCounter($newId);
+					break;
+				case 'users':
+					User::setIdCounter($newId);
+					break;
 			}
 		}
 	}

@@ -1,35 +1,26 @@
-[
-    {
+{
+    "1": {
         "id": 1,
         "name": "Freddie_1",
         "email": "alfred.walther.ext@iu.org",
-        "password": "$2y$10$FRu08XOWJ3jXuuBUcw1PXOnmXjdbaVB6OTSbxNOhpHc3bazRSroZ6",
-        "created": {
-            "date": "2023-11-14 18:52:56.506987",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        }
+        "password": "p@$$w0rd23!1",
+        "created": 1701457197,
+        "avatarUrl": "\/img\/avatar.png"
     },
-    {
+    "2": {
         "id": 2,
         "name": "Freddie_2",
         "email": "alfred.walther.ext@iu.org",
-        "password": "$2y$10$cvhwMuZUVNYK\/wWaE.c3Leg.7m3Vu5AxMeRM2yhs1FQfAK1xg4nIe",
-        "created": {
-            "date": "2023-11-14 18:52:56.560538",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        }
+        "password": "p@$$w0rd23!2",
+        "created": 1701457197,
+        "avatarUrl": "\/img\/avatar.png"
     },
-    {
+    "3": {
         "id": 3,
         "name": "Freddie_3",
         "email": "alfred.walther.ext@iu.org",
-        "password": "$2y$10$mp4gTHieM3Y81rkT4DmnvejXEhOTcirYtZcHgJcQHwrlM4kjS6tJi",
-        "created": {
-            "date": "2023-11-14 18:52:56.612986",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        }
+        "password": "p@$$w0rd23!3",
+        "created": 1701457197,
+        "avatarUrl": "\/img\/avatar.png"
     }
-]
+}
