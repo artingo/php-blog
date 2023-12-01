@@ -1,5 +1,5 @@
 <?php $cats = array2map($GLOBALS['categories']);
-$users = array2map($GLOBALS['users']); ?>
+$author = $GLOBALS['users'][$post->userId]; ?>
 <div class="content-wrapper px-4 py-2">
     <div class="content-header">
         <h1 class="m-0"><?= $title ?></h1>
@@ -17,7 +17,7 @@ $users = array2map($GLOBALS['users']); ?>
 
                     <div class="form-group row">
                         <label for="userId" class="col-sm-2 col-form-label">Author</label>
-                        <div class="form-control-plaintext col-sm-10"><?= $users[$post->userId] ?></div>
+                        <div class="form-control-plaintext col-sm-10"><?= $author->name ?></div>
                     </div>
 
                     <div class="form-group row">

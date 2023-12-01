@@ -1,5 +1,5 @@
-<?php $users = array2map($GLOBALS['users']);
-$userId = $post->userId ?? $_SESSION['currentUser'] ?>
+<?php $userId = $post->userId ?? $_SESSION['currentUser'];
+$author = $GLOBALS['users'][$userId]; ?>
 
 <div class="content-wrapper px-4 py-2">
     <div class="content-header">
@@ -18,14 +18,14 @@ $userId = $post->userId ?? $_SESSION['currentUser'] ?>
                             <label for="title" class="col-sm-2 col-form-label">Title</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="title" id="title" required
-                                   value="<?= $post->title ?>" placeholder="Write your post title here...">
+                                       value="<?= $post->title ?>" placeholder="Write your post title here...">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="userId" class="col-sm-2 col-form-label">Author</label>
                             <div class="col-sm-10">
-                                <span class="form-control-plaintext"><?= $users[$userId] ?></span>
+                                <span class="form-control-plaintext"><?= $author->name ?></span>
                                 <input type="hidden" name="userId" value="<?= $userId ?>">
                             </div>
                         </div>

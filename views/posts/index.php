@@ -1,5 +1,4 @@
 <?php $cats = array2map($GLOBALS['categories']);
-$users = array2map($GLOBALS['users']);
 $colors = array(1 => 'maroon', 2 => 'warning', 3 => 'indigo', 4 => 'navy', 5 => 'success', 6 => 'gray');
 ?>
 <style>
@@ -36,16 +35,17 @@ $colors = array(1 => 'maroon', 2 => 'warning', 3 => 'indigo', 4 => 'navy', 5 => 
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <?php foreach ($GLOBALS['posts'] as $id => $post) : ?>
+                <?php foreach ($GLOBALS['posts'] as $id => $post) :
+                  $author = $GLOBALS['users'][$post->userId]; ?>
                   <div class="col-xl-3 col-md-4 col-sm-6">
                       <div class="card card-outline card-indigo ">
                           <div class="card-header">
                               <div class="user-block">
-                                  <img class="img-circle" src="/img/user1-128x128.jpg" alt="User Image">
+                                  <img class="img-circle" src="<?= $author->avatarUrl ?>" alt="User Image">
                                   <a href="/posts/<?= $id ?>" class="username text-indigo">
                                     <?= $post->title ?>
                                   </a>
-                                  <span class="description"><?= $users[$post->userId] ?>
+                                  <span class="description"><?= $author->name ?>
                                         on <?= date("Y-m-d, H:i", $post->created) ?>
                                     </span>
                               </div>

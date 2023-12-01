@@ -1,5 +1,5 @@
 <?php
-$post = $GLOBALS['posts'][$postId];
+$post = $GLOBALS['posts'][$id];
 // if post isn't found, redirect to overview
 if (!$post) {
 	header("location: /posts");
