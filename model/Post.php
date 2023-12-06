@@ -18,11 +18,11 @@ class Post
 	 * Creates a new blog post
 	 * @param string $title
 	 * @param string $body
-	 * @param int $userId
+	 * @param int|null $userId
 	 * @param array $categories
 	 * @return void
 	 */
-	public function __construct(string $title, string $body, int $userId, array $categories = [1, 3])
+	public function __construct(string $title, string $body, int|null $userId, array $categories = [1, 3])
 	{
 		$this->title = $title;
 		$this->body = $body;
