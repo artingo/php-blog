@@ -1,5 +1,5 @@
 <?php
-//require_once BASE_PATH . "/model/User.php";
+require_once BASE_PATH . "/model/User.php";
 
 $isExistingUser = $_POST['isExistingUser'];
 // remove temporary fields
@@ -8,9 +8,14 @@ unset($_POST['password2']);
 
 if ($isExistingUser) {
 	$userId = $_POST['id'];
-	$user = $GLOBALS['posts'][$userId];
+	$user = $GLOBALS['users'][$userId];
 	if ($user) {
-		// update the existing user with the <form> fields
+		// Check if password was provided and hash it
+		if (!empty($_POST['password'])) {
+			$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+		}
+
+		// Update the existing user with the <form> fields
 		$GLOBALS['users'][$userId] = array_merge((array)$user, $_POST);
 		saveData('users');
 	}
