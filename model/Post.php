@@ -15,13 +15,14 @@ class Post
 	public $created;
 
 	/**
-	 * Creates a new blog entry
-	 * @param $title
-	 * @param $body
-	 * @param $userId
-	 * @param $categories
+	 * Creates a new blog post
+	 * @param string $title
+	 * @param string $body
+	 * @param int $userId
+	 * @param array $categories
+	 * @return void
 	 */
-	public function __construct($title, $body, $userId, $categories = [1, 3])
+	public function __construct(string $title, string $body, int $userId, array $categories = [1, 3])
 	{
 		$this->title = $title;
 		$this->body = $body;
@@ -33,9 +34,33 @@ class Post
 		Post::$idCounter++;
 	}
 
-	public static function setIdCounter($idCounter)
+
+	/**
+	 * Set the ID counter for the Post class
+	 *
+	 * @param int $idCounter The new value for the ID counter
+	 * @return void
+	 */
+	public static function setIdCounter(int $idCounter): void
 	{
 		self::$idCounter = $idCounter;
 	}
 
+	/**
+	 * Get the categories of the post
+	 * @return array
+	 */
+	public function getCategories(): array
+	{
+		return $this->categories;
+	}
+
+	/**
+	 * Set the categories of the post
+	 * @param array $categories
+	 */
+	public function setCategories(array $categories): void
+	{
+		$this->categories = $categories;
+	}
 }
