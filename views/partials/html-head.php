@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,20 +14,19 @@
     <link rel="stylesheet" href="/css/adminlte.min.css">
 
     <style>
-    .transparent {
-        opacity: 0.7;
-    }
-    .content-wrapper {
-        opacity: 0.85;
-    }
-    .poster {
-        background-image: url(https://picsum.photos/id/28/1920/1080);
-        /*background-image: url(https://picsum.photos/seed/picsum/1920/1080?random);*/
-        /*background-repeat: no-repeat;*/
-    }
+        .transparent {
+            background: rgba(0, 0, 0, 0.8);
+
+        }
+
+        .poster {
+            background-image: url(https://picsum.photos/id/28/1920/1080);
+            /*background-image: url(https://picsum.photos/seed/picsum/1920/1080?random);*/
+            /*background-repeat: no-repeat;*/
+        }
     </style>
 
 </head>
-<body class="hold-transition sidebar-mini poster">
-<div class="wrapper">
 
+<body class="hold-transition sidebar-mini poster">
+    <div class="wrapper">
