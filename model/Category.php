@@ -13,12 +13,30 @@ class Category
 
     /**
      * Creates a new blog category
-     * @param $name
+     * @param string $name
      */
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
         $this->id = self::$id_counter;
         self::$id_counter++;
+    }
+
+    /**
+     * Get the ID of the category
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the name of the category
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

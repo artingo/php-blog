@@ -22,5 +22,13 @@
         "password": "p@$$w0rd23!3",
         "created": 1701457197,
         "avatarUrl": "\/img\/avatar.png"
+    },
+    "4": {
+        "id": 4,
+        "name": "BobBob",
+        "email": "bob@email.com",
+        "password": "$2y$10$39OtZNDIwycfnQrggvu8rOzj\/APxMLtlpNHl.QLsZJhITUkmj0L\/m",
+        "created": 1701892785,
+        "avatarUrl": "\/img\/avatar.png"
     }
 }

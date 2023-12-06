@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Represents a blog user
  * Until there is a database connection, the ID will be incremented manually
@@ -6,9 +7,6 @@
 class User
 {
 	private static $idCounter = 1;
-//	private static $cipher = "aes-256-ctr";
-//	private static $encryption_key = "!%!!!)/=";
-//	private static $encryption_iv = '1234567891011121';
 	public $id;
 	public $name;
 	public $email;
@@ -18,17 +16,16 @@ class User
 
 	/**
 	 * Creates a new user. The password is encrypted.
-	 * @param $name
-	 * @param $email
-	 * @param $password
+	 * @param string $name
+	 * @param string $email
+	 * @param string $password
+	 * @param string $avatarUrl
 	 */
-	public function __construct($name, $email, $password, $avatarUrl = "/img/avatar.png")
+	public function __construct(string $name, string $email, string $password, string $avatarUrl = "/img/avatar.png")
 	{
 		$this->name = $name;
 		$this->email = $email;
-		$this->password = $password;
-//		TODO: encrypt password
-//		$this->password = openssl_encrypt($password, self::$cipher, self::$encryption_key, 0, self::$encryption_iv);
+		$this->password = password_hash($password, PASSWORD_DEFAULT);
 		$this->avatarUrl = $avatarUrl;
 
 		$this->id = self::$idCounter;
@@ -36,7 +33,13 @@ class User
 		self::$idCounter++;
 	}
 
-	public static function fromObject($user) : User {
+	/**
+	 * Creates a new user from an object
+	 * @param $user
+	 * @return User
+	 */
+	public static function fromObject($user): User
+	{
 		$instance = new self($user->name, $user->email, $user->password, $user->avatarUrl);
 		$instance->id = $user->id;
 		return $instance;
@@ -45,9 +48,8 @@ class User
 	 * Returns the decrypted password
 	 * @return false|string
 	 */
-	public function getPassword()
+	public function getPassword(): string
 	{
-//		$decrypted = openssl_decrypt($this->password, self::$cipher, self::$encryption_key, 0, self::$encryption_iv);
 		return $this->password;
 	}
 
@@ -55,5 +57,4 @@ class User
 	{
 		self::$idCounter = $idCounter;
 	}
-
 }
