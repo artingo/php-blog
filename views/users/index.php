@@ -20,15 +20,15 @@
 
                 <div class="card-body p-0">
                     <ul class="users-list clearfix">
-	                    <?php foreach ($data as $user) : ?>
-                        <li><a href="/users/<?= $user->id ?>">
-                                <img src="<?= $user->avatarUrl ?>" width="128" alt="User Image">
-                                <span class="users-list-name"><?= $user->name ?></span>
-                            </a>
-                            <span class="users-list-date">
-                              joined on <?= date("Y-m-d, H:i", $user->created) ?>
-                            </span>
-                        </li>
+                        <?php foreach ($data as $user) : ?>
+                            <li><a href="/users/<?= $user->id ?>">
+                                    <img src="<?= $user->avatarUrl ?>" width="128" alt="User Image">
+                                    <span class="users-list-name"><?= $user->name ?></span>
+                                </a>
+                                <span class="users-list-date">
+                                    joined on <?= date("Y-m-d, H:i", $user->created) ?>
+                                </span>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
 
@@ -37,4 +37,3 @@
         </div>
     </div>
 </div>
-
